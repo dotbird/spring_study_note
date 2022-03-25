@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--默认！使用无参构造创建对象-->
+    <!--<bean id="user" class="com.kuang.pojo.User">-->
+        <!--<property name="name" value="张三"/>-->
+    <!--</bean>-->
+
+    <!--第一种方式：下标赋值    -->
+    <!--<bean id="user" class="com.kuang.pojo.User">-->
+        <!--<constructor-arg index="0" value="李四"/>-->
+    <!--</bean>-->
+
+    <!--第二种方式：通过类型的创建，不建议使用-->
+    <!--<bean id="user" class="com.kuang.pojo.User">-->
+        <!--<constructor-arg type="java.lang.String" value="王五"/>-->
+    <!--</bean>-->
+
+    <!--第三种方式：直接通过参数名来设置    -->
+    <bean id="user" class="com.kuang.pojo.User">
+        <constructor-arg name="name" value="杨柳"/>
+    </bean>
+
+    <!-- '总结' ：在配置文件加载的时候，容器中管理的对象就已经初始化了！-->
+
+
+    <!--=== 配置 ===================================================================-->
+
+    <!--别名，如果添加了别名，我们也可以使用别名获取到这个对象-->
+    <alias name="user" alias="userNew"/>
+
+    <!--
+         id：bean的唯一标识符，也就是相当于我们学的对象名
+         class：bean对象所对应的全限定名：包名+类名
+         name：也是别名，而且name可以同时取多个别名
+       -->
+    <bean id="userT" class="com.kuang.pojo.User" name="user2 u2,u3;u4">
+        <property name="name" value="春天"/>
+    </bean>
+
+    <!-- import 一般用于团队开发使用，它可以将多个配置文件，导入合并为一个。-->
+    <import resource="beans1.xml"/>
+    <import resource="beans2.xml"/>
+
+
+
+</beans>
