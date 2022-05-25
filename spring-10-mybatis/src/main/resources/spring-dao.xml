@@ -4,26 +4,26 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!--DataSource:Ê¹ÓÃSpringµÄÊý¾ÝÔ´Ìæ»»MybatisµÄÅäÖÃ c3p0 dbcp druid
-        ÎÒÃÇÕâÀïÊ¹ÓÃSpringÌá¹©µÄJDBC£º-->
+    <!--DataSource:ä½¿ç”¨Springçš„æ•°æ®æºæ›¿æ¢Mybatisçš„é…ç½® c3p0 dbcp druid
+        æˆ‘ä»¬è¿™é‡Œä½¿ç”¨Springæä¾›çš„JDBCï¼š-->
     <bean id="dateSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8"/>
         <property name="username" value="root"/>
-        <property name="password" value="d05178072"/>
+        <property name="password" value="xxxxxx"/>
     </bean>
 
     <!--sqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dateSource"/>
-        <!--¹ØÁªmybatisÅäÖÃÎÄ¼þ-->
+        <!--å…³è”mybatisé…ç½®æ–‡ä»¶-->
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <property name="mapperLocations" value="classpath:com/kuang/mapper/*.xml"/>
     </bean>
 
-    <!--SqlSessionTemplate:¾ÍÊÇÎÒÃÇÊ¹ÓÃµÄsqlSession-->
+    <!--SqlSessionTemplate:å°±æ˜¯æˆ‘ä»¬ä½¿ç”¨çš„sqlSession-->
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-        <!--Ö»ÄÜÊ¹ÓÃ¹¹ÔìÆ÷×¢ÈësqlSessionFactory£¬ÒòÎªËüÃ»ÓÐset·½·¨-->
+        <!--åªèƒ½ä½¿ç”¨æž„é€ å™¨æ³¨å…¥sqlSessionFactoryï¼Œå› ä¸ºå®ƒæ²¡æœ‰setæ–¹æ³•-->
         <constructor-arg index="0" ref="sqlSessionFactory"/>
     </bean>
 
